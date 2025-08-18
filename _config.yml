@@ -2,3 +2,5 @@ title: "Synthetika"
 description: "AI, Hacking, Discussions"
 theme: minima
 url: "https://synthetika.github.io"
+sass:
+  style: compressed
