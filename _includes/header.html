@@ -1,6 +1,7 @@
 <header class="site-header" role="banner">
   <div class="wrapper">
-    <a class="site-title glitch" rel="author" href="{{ "/" | relative_url }}" data-text="{{ site.title }}">
+    <!-- Glitchy site title -->
+    <a class="site-title glitch" href="{{ "/" | relative_url }}" data-text="{{ site.title }}">
       {{ site.title }}
     </a>
 
@@ -14,12 +15,13 @@
         </span>
       </label>
       <div class="trigger">
-        {% for my_page in site.pages %}
-          {% if my_page.title %}
-            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title }}</a>
+        {% for p in site.pages %}
+          {% if p.title %}
+            <a class="page-link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
           {% endif %}
         {% endfor %}
       </div>
     </nav>
   </div>
 </header>
+    
