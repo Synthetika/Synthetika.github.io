@@ -6,7 +6,7 @@ sass:
   style: compressed
 # Which pages appear in the top menu bar
 header_pages:
-  - index.md
-  - about.md
-  - projects.md
-  - contact.md
+  - index.md      # Home
+  - about.md      # About
+  - projects.md   # Projects
+  - contact.md    # Contact
