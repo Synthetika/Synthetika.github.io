@@ -83,3 +83,22 @@ a {
   border-bottom: 2px solid #00ff88;
   box-shadow: 0 0 10px rgba(0,255,136,.2);
 }
+/* === Custom Menu Styling === */
+.site-nav {
+  background: rgba(0, 0, 0, 0.6); /* subtle transparent bar */
+  padding: 10px;
+  border-bottom: 1px solid #0ff; /* neon cyan line */
+}
+
+.site-nav a {
+  color: #00ffe5 !important; /* bright cyan hacker text */
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+.site-nav a:hover {
+  color: #ff00ff !important; /* magenta hover */
+  text-shadow: 0 0 5px #ff00ff, 0 0 15px #ff00ff;
+}
