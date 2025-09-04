@@ -1,1 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetika - Contact</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background: #0a0a0a;
+            color: #888;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+        }
+
+        .nav-back {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-back:hover {
+            color: #00ff88;
+        }
+
+        .nav-back::before {
+            content: "← ";
+        }
+
+        .title {
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .contact-content {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .contact-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            border-left: 2px solid #333;
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-item::before {
+            content: "> ";
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-left-color: #00ff88;
+        }
+
+        .contact-item:hover::before {
+            color: #00ff88;
+        }
+
+        .contact-label {
+            color: #00ff88;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #00ff88;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
+        }
+
+        .contact-link::before {
+            content: "[";
+            color: #333;
+        }
+
+        .contact-link::after {
+            content: "]";
+            color: #333;
+        }
+
+        .contact-link:hover::before,
+        .contact-link:hover::after {
+            color: #00ff88;
+        }
+
+        .note {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid #333;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 3px solid #00ff88;
+        }
+
+        .note-title {
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .contact-item {
+                padding-left: 1.5rem;
+            }
+        }
+
+        /* Scanlines */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(0, 255, 136, 0.01) 50%,
+                transparent 100%
+            );
+            background-size: 100% 4px;
+            animation: scanlines 0.1s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="nav-back">back to main</a>
+            <h1 class="title">CONTACT</h1>
+            <p class="subtitle">// establish_connection</p>
+        </div>
+
+        <div class="contact-content">
+            <p>Interested in connecting? Whether you want to collaborate, share knowledge, or just chat about AI, cybersecurity, or the technological singularity, I'd love to hear from you.</p>
+
+            <ul class="contact-list">
+                <li class="contact-item">
+                    <span class="contact-label">GitHub</span>
+                    <a href="https://github.com/Synthetika" class="contact-link">github.com/Synthetika</a>
+                </li>
+
+                <li class="contact-item">
+                    <span class="contact-label">Blog</span>
+                    <a href="https://synthetika-cortex.beehiiv.com/" class="contact-link">Synthetika Cortex</a>
+                </li>
+
+                <li class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <a href="mailto:wwaters@arcanum-sec.com" class="contact-link">wwaters@arcanum-sec.com</a>
+                </li>
+
+                <li class="contact-item">
+                    <span class="contact-label">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/waynewaters" class="contact-link">linkedin.com/in/waynewaters</a>
+                </li>
+
+                <li class="contact-item">
+                    <span class="contact-label">X (Twitter)</span>
+                    <a href="https://x.com/Synthetica83" class="contact-link">@Synthetica83</a>
+                </li>
+
+                <li class="contact-item">
+                    <span class="contact-label">Arcanum Security</span>
+                    <a href="https://www.arcanum-sec.com/" class="contact-link">arcanum-sec.com</a>
+                </li>
+            </ul>
+
+            <div class="note">
+                <div class="note-title">// response_time</div>
+                <p>I try to respond to messages within 24-48 hours. If you're reaching out about potential opportunities, collaboration, or just want to discuss the latest in AI security, don't hesitate to get in touch.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add glitch effect to contact links on hover
+        const contactLinks = document.querySelectorAll('.contact-link');
+        
+        contactLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                let glitchStep = 0;
+                const glitchColors = ['#ff0080', '#0080ff', '#00ff88'];
+                
+                const glitchInterval = setInterval(() => {
+                    this.style.color = glitchColors[glitchStep % glitchColors.length];
+                    this.style.textShadow = `0 0 8px ${glitchColors[glitchStep % glitchColors.length]}`;
+                    
+                    glitchStep++;
+                    if (glitchStep > 2) {
+                        clearInterval(glitchInterval);
+                        this.style.color = '#00ff88';
+                        this.style.textShadow = '0 0 8px rgba(0, 255, 136, 0.3)';
+                    }
+                }, 80);
+            });
+        });
+    </script>
+</body>
+</html>
