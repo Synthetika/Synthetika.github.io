@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetika - About</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #888;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.7;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+        }
+
+        .nav-back {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-back:hover {
+            color: #00ff88;
+        }
+
+        .nav-back::before {
+            content: "← ";
+        }
+
+        .title {
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .content {
+            color: #888;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: #00ff88;
+            font-weight: 500;
+        }
+
+        .cert-list {
+            color: #0080ff;
+            margin: 0.5rem 0;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .content {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Scanlines */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(0, 255, 136, 0.01) 50%,
+                transparent 100%
+            );
+            background-size: 100% 4px;
+            animation: scanlines 0.1s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="nav-back">back to main</a>
+            <h1 class="title">ABOUT</h1>
+            <p class="subtitle">// neural_pathway</p>
+        </div>
+
+        <div class="content">
+            <p>Hi, welcome to my page. I've spent some time getting this just right and hope you enjoy it.</p>
+
+            <p>I'm trying to find my own niche in the ever expanding universe of cybersecurity. It's been a journey of trial and error through getting some industry level certifications like <span class="cert-list">Security+, CEH, a cybersecurity certificate from my local college, and the Google Cybersecurity cert</span>. I'm still learning and eager to learn new things every day.</p>
+
+            <p>I'm currently enrolled in college to finish my AA degree. Initially, I thought I would get a cybersecurity degree, and although I believe that's still what I'm going to do, I believe my focus will be more on <span class="highlight">AI and machine learning</span>. For example, red teaming AI systems and similar work.</p>
+
+            <p>This year I went to my first <span class="highlight">DEF CON</span> with Jason and Julia of Arcanum. I got to help them with guerrilla merchandising (basically setting up wherever Jason was speaking and passing out swag and the coveted Arcanum Badge, which was a huge hit).</p>
+
+            <p>On the last day, Jason had a panel with <span class="highlight">BASI 6</span>, and I was genuinely inspired. The way they looked, talked, and just being badass really made me want to focus more on learning all I could about AI and how someone could leverage their security expertise into <span class="highlight">AI red teaming</span>.</p>
+
+            <p>So far, I've gotten to <span class="highlight">level 7 of Gandalf</span> and I'm working on level 8, but taking it little by little because balancing workload and life is a fragile balance.</p>
+
+            <p>I hope to one day be an expert in the field and have my own talks that inspire people like they inspired me. My journey has been long and sometimes grueling, and I'm still figuring it out, but I haven't quit.</p>
+
+            <p>I'm thankful for the amazing support I have from my family and my hacker family as well. Thank you all.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle glitch effect to highlights on hover
+        const highlights = document.querySelectorAll('.highlight');
+        
+        highlights.forEach(highlight => {
+            highlight.addEventListener('mouseenter', function() {
+                let glitchStep = 0;
+                const glitchColors = ['#ff0080', '#0080ff', '#00ff88'];
+                
+                const glitchInterval = setInterval(() => {
+                    this.style.color = glitchColors[glitchStep % glitchColors.length];
+                    this.style.textShadow = `0 0 8px ${glitchColors[glitchStep % glitchColors.length]}`;
+                    
+                    glitchStep++;
+                    if (glitchStep > 2) {
+                        clearInterval(glitchInterval);
+                        this.style.color = '#00ff88';
+                        this.style.textShadow = 'none';
+                    }
+                }, 80);
+            });
+        });
+    </script>
+</body>
+</html>
