@@ -384,7 +384,10 @@
             });
             
             item.addEventListener('click', function(e) {
-                e.preventDefault();
+                // Only prevent default for non-link nav items
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                }
                 
                 navItems.forEach(nav => nav.classList.remove('active'));
                 this.classList.add('active');
