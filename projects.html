@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetika - Projects</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #888;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+        }
+
+        .nav-back {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-back:hover {
+            color: #00ff88;
+        }
+
+        .nav-back::before {
+            content: "← ";
+        }
+
+        .title {
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        .projects-list {
+            list-style: none;
+        }
+
+        .project {
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+            border-left: 2px solid #333;
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+
+        .project::before {
+            content: "> ";
+            position: absolute;
+            left: -1rem;
+            top: 0;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project:hover {
+            border-left-color: #00ff88;
+        }
+
+        .project:hover::before {
+            color: #00ff88;
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #00ff88;
+            display: inline;
+            margin-right: 1rem;
+        }
+
+        .project-type {
+            color: #888;
+            font-size: 1rem;
+            display: inline;
+        }
+
+        .project-description {
+            color: #888;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .project-links a {
+            color: #666;
+            text-decoration: none;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a::before {
+            content: "[";
+            color: #333;
+        }
+
+        .project-links a::after {
+            content: "]";
+            color: #333;
+        }
+
+        .project-links a:hover {
+            color: #00ff88;
+        }
+
+        .project-links a:hover::before,
+        .project-links a:hover::after {
+            color: #00ff88;
+        }
+
+        .project-links a.primary {
+            color: #00ff88;
+        }
+
+        .project-links a.primary::before,
+        .project-links a.primary::after {
+            color: #00ff88;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .project {
+                padding-left: 1.5rem;
+            }
+            
+            .project-header {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .project-title {
+                margin-right: 0;
+            }
+        }
+
+        /* Scanlines */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(0, 255, 136, 0.01) 50%,
+                transparent 100%
+            );
+            background-size: 100% 4px;
+            animation: scanlines 0.1s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="nav-back">back to main</a>
+            <h1 class="title">PROJECTS</h1>
+            <p class="subtitle">// digital artifacts & cyber experiments</p>
+        </div>
+
+        <ul class="projects-list">
+            <li class="project">
+                <div class="project-header">
+                    <h2 class="project-title">Bug Hunter Methodology Editing</h2>
+                </div>
+                <p class="project-description">
+                    This was my first project working with Jason and Arcanum. I edited the videos for the Bug Hunter Methodology course. 
+                    I learned a lot by doing this and had no previous editing experience. I hope you enjoy the final result.
+                </p>
+                <div class="project-links">
+                    <a href="https://www.arcanum-sec.com/training/the-bug-hunters-methodology" class="primary">watch_course</a>
+                </div>
+            </li>
+
+            <li class="project">
+                <div class="project-header">
+                    <h2 class="project-title">Basic Cyber Attacks Presentation</h2>
+                </div>
+                <p class="project-description">
+                    Simple PowerPoint I made for school explaining some basic cyber attack types and how to stay safe online. 
+                    Nothing too advanced, just covering the fundamentals for everyday users.
+                </p>
+                <div class="project-links">
+                    <a href="https://drive.google.com/file/d/1a0SXE0lOkFEg5iEE1M9zGXjoMpLMneO-/view?usp=sharing" class="primary">view_slides</a>
+                </div>
+            </li>
+
+            <li class="project">
+                <div class="project-header">
+                    <h2 class="project-title">More Projects Coming Soon</h2>
+                </div>
+                <p class="project-description">
+                    Currently working on new projects as I progress in my cybersecurity and AI journey. 
+                    Check back soon for updates on my latest experiments and learning adventures.
+                </p>
+                <div class="project-links">
+                    <a href="#" class="primary">stay_tuned</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // Add glitch effect to project titles on hover
+        const projects = document.querySelectorAll('.project');
+        
+        projects.forEach(project => {
+            project.addEventListener('mouseenter', function() {
+                const title = this.querySelector('.project-title');
+                
+                let glitchStep = 0;
+                const glitchColors = ['#ff0080', '#0080ff', '#00ff88'];
+                
+                const glitchInterval = setInterval(() => {
+                    title.style.color = glitchColors[glitchStep % glitchColors.length];
+                    title.style.textShadow = `0 0 10px ${glitchColors[glitchStep % glitchColors.length]}`;
+                    
+                    glitchStep++;
+                    if (glitchStep > 2) {
+                        clearInterval(glitchInterval);
+                        title.style.color = '#00ff88';
+                        title.style.textShadow = 'none';
+                    }
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
