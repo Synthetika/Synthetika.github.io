@@ -29,6 +29,7 @@
 
         .header {
             margin-bottom: 3rem;
+            position: relative;
         }
 
         .nav-back {
@@ -36,11 +37,14 @@
             color: #666;
             text-decoration: none;
             margin-bottom: 2rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 100;
         }
 
         .nav-back:hover {
             color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
         }
 
         .nav-back::before {
@@ -52,12 +56,46 @@
             color: #00ff88;
             text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
             margin-bottom: 0.5rem;
+            display: block;
+            cursor: pointer;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .title:hover {
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .title::before,
+        .title::after {
+            content: "CONTACT";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .title::before {
+            color: #ff0080;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+
+        .title::after {
+            color: #0080ff;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
         }
 
         .subtitle {
             font-size: 1.2rem;
             color: #888;
             margin-bottom: 2rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            color: #00ff88;
         }
 
         .contact-content {
@@ -105,6 +143,8 @@
             font-weight: 500;
             display: block;
             margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .contact-link {
@@ -145,6 +185,8 @@
             color: #00ff88;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         /* Mobile */
@@ -189,7 +231,7 @@
         <div class="header">
             <a href="index.html" class="nav-back">back to main</a>
             <h1 class="title">CONTACT</h1>
-            <p class="subtitle">// establish_connection</p>
+            <p class="subtitle">// establish_connection<span class="cursor">_</span></p>
         </div>
 
         <div class="contact-content">
@@ -235,26 +277,166 @@
     </div>
 
     <script>
-        // Add glitch effect to contact links on hover
+        // Cursor blinking effect
+        const cursor = document.querySelector('.cursor');
+        if (cursor) {
+            cursor.style.color = '#00ff88'; // Ensure green color
+            setInterval(() => {
+                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            }, 500);
+        }
+
+        // Title glitch effect on hover (matching main page)
+        const title = document.querySelector('.title');
+        let canTitleGlitch = true;
+        
+        title.addEventListener('mouseenter', function() {
+            if (canTitleGlitch) {
+                canTitleGlitch = false;
+                
+                let glitchStep = 0;
+                const glitchColors = ['#ff0080', '#0080ff', '#00ff88', '#ff4040'];
+                
+                const glitchInterval = setInterval(() => {
+                    this.style.color = glitchColors[glitchStep % glitchColors.length];
+                    this.style.textShadow = `0 0 20px ${glitchColors[glitchStep % glitchColors.length]}, 2px 0 0 #ff0080, -2px 0 0 #0080ff`;
+                    this.style.transform = `translate(${(Math.random() - 0.5) * 2}px, ${(Math.random() - 0.5) * 2}px)`;
+                    
+                    glitchStep++;
+                    if (glitchStep > 6) {
+                        clearInterval(glitchInterval);
+                        this.style.color = '#00ff88';
+                        this.style.textShadow = '0 0 20px rgba(0, 255, 136, 0.3)';
+                        this.style.transform = 'translate(0, 0)';
+                    }
+                }, 50);
+                
+                setTimeout(() => {
+                    canTitleGlitch = true;
+                }, 5000);
+            }
+        });
+
+        // Back navigation glitch effect
+        const navBack = document.querySelector('.nav-back');
+        let canNavGlitch = true;
+        
+        navBack.addEventListener('mouseenter', function() {
+            if (canNavGlitch) {
+                canNavGlitch = false;
+                
+                let glitchStep = 0;
+                const navGlitchColors = ['#ff0080', '#00ff88', '#0080ff'];
+                
+                const navGlitchInterval = setInterval(() => {
+                    this.style.color = navGlitchColors[glitchStep % navGlitchColors.length];
+                    this.style.textShadow = `0 0 10px ${navGlitchColors[glitchStep % navGlitchColors.length]}`;
+                    
+                    glitchStep++;
+                    if (glitchStep > 3) {
+                        clearInterval(navGlitchInterval);
+                        this.style.color = '#00ff88';
+                        this.style.textShadow = '0 0 10px rgba(0, 255, 136, 0.3)';
+                    }
+                }, 60);
+                
+                setTimeout(() => {
+                    canNavGlitch = true;
+                }, 3000);
+            }
+        });
+
+        // Enhanced contact link glitch effects
         const contactLinks = document.querySelectorAll('.contact-link');
+        let contactCooldowns = new Map();
         
         contactLinks.forEach(link => {
             link.addEventListener('mouseenter', function() {
+                const linkText = this.textContent;
+                
+                if (!contactCooldowns.has(linkText) || Date.now() - contactCooldowns.get(linkText) > 2000) {
+                    contactCooldowns.set(linkText, Date.now());
+                    
+                    let glitchStep = 0;
+                    const glitchColors = ['#ff0080', '#0080ff', '#00ff88'];
+                    
+                    const glitchInterval = setInterval(() => {
+                        this.style.color = glitchColors[glitchStep % glitchColors.length];
+                        this.style.textShadow = `0 0 8px ${glitchColors[glitchStep % glitchColors.length]}`;
+                        this.style.transform = `translate(${(Math.random() - 0.5) * 1}px, ${(Math.random() - 0.5) * 1}px)`;
+                        
+                        glitchStep++;
+                        if (glitchStep > 4) {
+                            clearInterval(glitchInterval);
+                            this.style.color = '#00ff88';
+                            this.style.textShadow = '0 0 8px rgba(0, 255, 136, 0.3)';
+                            this.style.transform = 'translate(0, 0)';
+                        }
+                    }, 80);
+                }
+            });
+        });
+
+        // Contact label glitch effects
+        const contactLabels = document.querySelectorAll('.contact-label');
+        let labelCooldowns = new Map();
+        
+        contactLabels.forEach(label => {
+            label.addEventListener('mouseenter', function() {
+                const labelText = this.textContent;
+                
+                if (!labelCooldowns.has(labelText) || Date.now() - labelCooldowns.get(labelText) > 2000) {
+                    labelCooldowns.set(labelText, Date.now());
+                    
+                    let glitchStep = 0;
+                    const glitchColors = ['#00ff88', '#ff0080', '#0080ff'];
+                    
+                    const glitchInterval = setInterval(() => {
+                        this.style.color = glitchColors[glitchStep % glitchColors.length];
+                        this.style.textShadow = `0 0 8px ${glitchColors[glitchStep % glitchColors.length]}`;
+                        this.style.transform = `translate(${(Math.random() - 0.5) * 1}px, ${(Math.random() - 0.5) * 1}px)`;
+                        
+                        glitchStep++;
+                        if (glitchStep > 3) {
+                            clearInterval(glitchInterval);
+                            this.style.color = '#00ff88';
+                            this.style.textShadow = 'none';
+                            this.style.transform = 'translate(0, 0)';
+                        }
+                    }, 80);
+                }
+            });
+        });
+
+        // Note title glitch effect
+        const noteTitle = document.querySelector('.note-title');
+        let canNoteTitleGlitch = true;
+        
+        noteTitle.addEventListener('mouseenter', function() {
+            if (canNoteTitleGlitch) {
+                canNoteTitleGlitch = false;
+                
                 let glitchStep = 0;
-                const glitchColors = ['#ff0080', '#0080ff', '#00ff88'];
+                const glitchColors = ['#00ff88', '#ff0080', '#0080ff'];
                 
                 const glitchInterval = setInterval(() => {
                     this.style.color = glitchColors[glitchStep % glitchColors.length];
                     this.style.textShadow = `0 0 8px ${glitchColors[glitchStep % glitchColors.length]}`;
+                    this.style.transform = `translate(${(Math.random() - 0.5) * 1}px, ${(Math.random() - 0.5) * 1}px)`;
                     
                     glitchStep++;
-                    if (glitchStep > 2) {
+                    if (glitchStep > 3) {
                         clearInterval(glitchInterval);
                         this.style.color = '#00ff88';
-                        this.style.textShadow = '0 0 8px rgba(0, 255, 136, 0.3)';
+                        this.style.textShadow = 'none';
+                        this.style.transform = 'translate(0, 0)';
                     }
                 }, 80);
-            });
+                
+                setTimeout(() => {
+                    canNoteTitleGlitch = true;
+                }, 3000);
+            }
         });
     </script>
 </body>
