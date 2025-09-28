@@ -1,1 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthetika - Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background: #0a0a0a;
+            color: #888;
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .nav-back {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-back:hover {
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .nav-back::before {
+            content: "← ";
+        }
+
+        .title {
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            margin-bottom: 0.5rem;
+            display: block;
+            cursor: pointer;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .title:hover {
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            color: #00ff88;
+        }
+
+        .download-section {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid #333;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            border-left: 3px solid #00ff88;
+            text-align: center;
+        }
+
+        .download-btn {
+            display: inline-block;
+            color: #00ff88;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #00ff88;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .download-btn:hover {
+            background: rgba(0, 255, 136, 0.2);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .resume-content {
+            background: #111;
+            border: 1px solid #333;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #00ff88;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            color: #00ff88;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .contact-info span {
+            color: #666;
+        }
+
+        .contact-info a {
+            color: #00ff88;
+            text-decoration: none;
+        }
+
+        .section {
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: #00ff88;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .section-title::before {
+            content: "// ";
+            color: #666;
+        }
+
+        .objective {
+            color: #888;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid #333;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: ">";
+            position: absolute;
+            left: -0.7rem;
+            top: 0;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .job-title {
+            color: #00ff88;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .company-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-description {
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: rgba(0, 255, 136, 0.05);
+            padding: 1rem;
+            border: 1px solid #333;
+            border-left: 3px solid #00ff88;
+        }
+
+        .skill-category h4 {
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-list {
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .certifications-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .cert-item {
+            background: rgba(0, 255, 136, 0.05);
+            padding: 1rem;
+            border: 1px solid #333;
+            border-left: 3px solid #00ff88;
+        }
+
+        .cert-name {
+            color: #00ff88;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .cert-date {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .projects-list {
+            margin-top: 1rem;
+        }
+
+        .project-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid #333;
+            border-left: 3px solid #00ff88;
+        }
+
+        .project-title {
+            color: #00ff88;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .skills-grid, .certifications-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scanlines */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(0, 255, 136, 0.01) 50%,
+                transparent 100%
+            );
+            background-size: 100% 4px;
+            animation: scanlines 0.1s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="nav-back">back to main</a>
+            <h1 class="title">RESUME</h1>
+            <p class="subtitle">// professional_profile<span class="cursor">_</span></p>
+        </div>
+
+        <div class="download-section">
+            <p style="margin-bottom: 1rem; color: #888;">Download resume in various formats:</p>
+            <a href="#" class="download-btn">download_pdf</a>
+            <a href="#" class="download-btn">download_docx</a>
+        </div>
+
+        <div class="resume-content">
+            <div class="resume-header">
+                <h1 class="name">WAYNE WATERS</h1>
+                <p class="tagline">Management Professional | Transitioning to Cybersecurity</p>
+                <div class="contact-info">
+                    <span>Dunedin, FL 34698</span>
+                    <span>(727) 504-1211</span>
+                    <span><a href="mailto:waters.wayne@icloud.com">waters.wayne@icloud.com</a></span>
+                    <span><a href="mailto:wwaters@arcanum-sec.com">wwaters@arcanum-sec.com</a></span>
+                    <span><a href="https://linkedin.com/in/waynewaters">linkedin.com/in/waynewaters</a></span>
+                    <span><a href="https://synthetika.github.io">synthetika.github.io</a></span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">objective</h2>
+                <p class="objective">
+                    Management professional with 8+ years leading teams up to 40+ associates, including facility security operations, emergency response protocols, and compliance oversight. Transitioning to cybersecurity through active certifications, formal education, and hands-on lab work. Currently interning at Arcanum providing video editing support for professional course production. Active contributor to cybersecurity community through DefCon 2025, ISC2 conference, and BSides St. Petersburg volunteer work.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">professional_experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-title">Cybersecurity Intern</div>
+                    <div class="company-date">Arcanum (Remote) | 2025 — Present</div>
+                    <div class="job-description">
+                        Video editing and content production for professional cybersecurity courses using Adobe Premiere Pro. Edited "The Bug Hunter's Methodology" and "RBPAI" courses for improved navigation and accessibility. Supported team activities at DefCon 2025 including conference logistics and community engagement.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Grocery Replenishment Specialist</div>
+                    <div class="company-date">Publix | 2022 — Present</div>
+                    <div class="job-description">
+                        Managing complex inventory systems while pursuing intensive cybersecurity education and certification goals. Demonstrating exceptional time management by balancing full-time employment with academic and internship responsibilities.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Grocery Manager</div>
+                    <div class="company-date">Publix | 2018 — 2022</div>
+                    <div class="job-description">
+                        Led teams up to 40+ associates, managed facility security operations and emergency response protocols. Conducted daily security inspections, maintained operational compliance, and managed overnight security as Manager-in-Charge. Responsible for training, performance evaluations, and ensuring adherence to organizational security standards.
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Assistant Grocery Manager</div>
+                    <div class="company-date">Publix | 2016 — 2018</div>
+                    <div class="job-description">
+                        Supported departmental management through operational oversight and team coordination. Developed analytical problem-solving skills while managing complex customer and operational challenges. Built foundation in leadership principles and cross-functional collaboration.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">technical_skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Security Tools & Platforms</h4>
+                        <div class="skill-list">
+                            Burp Suite, Nmap, Wireshark<br>
+                            Hack The Box Academy<br>
+                            OSINT techniques<br>
+                            Vulnerability assessment basics
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Systems & Infrastructure</h4>
+                        <div class="skill-list">
+                            Linux/Kali administration<br>
+                            Docker containerization<br>
+                            VM management (Parallels)<br>
+                            Windows environments
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Leadership & Operations</h4>
+                        <div class="skill-list">
+                            Team management (40+ associates)<br>
+                            Security operations oversight<br>
+                            Emergency response protocols<br>
+                            Compliance monitoring
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Content & Production</h4>
+                        <div class="skill-list">
+                            Adobe Premiere Pro<br>
+                            Technical documentation<br>
+                            Course content structuring<br>
+                            Professional video editing
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">certifications_&_education</h2>
+                <div class="certifications-list">
+                    <div class="cert-item">
+                        <div class="cert-name">CompTIA Security+</div>
+                        <div class="cert-date">February 2024 (Expires 2027)</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">Certified Ethical Hacker (CEH)</div>
+                        <div class="cert-date">Current Certification</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">Google Cybersecurity Certificate</div>
+                        <div class="cert-date">October 2023</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">SPC Cybersecurity Certificate</div>
+                        <div class="cert-date">December 2023</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">CompTIA PenTest+ (In Progress)</div>
+                        <div class="cert-date">Currently Studying</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">AS in Cybersecurity</div>
+                        <div class="cert-date">St. Petersburg College (Expected 2026)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">projects_&_labs</h2>
+                <div class="projects-list">
+                    <div class="project-item">
+                        <div class="project-title">Home Laboratory Environment</div>
+                        <div class="project-description">
+                            Built comprehensive cybersecurity testing environment using Parallels virtualization platform. Configured and troubleshot complex Kali Linux installations including Parallels toolbox integration. Deployed containerized security frameworks using Docker for vulnerability assessment and penetration testing practice.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Hack The Box Training</div>
+                        <div class="project-description">
+                            Completed multiple training modules including Web Requests, Attacking Web Applications with Ffuf, Introduction to Web Applications, Using Web Proxies, and Information Gathering. Completed Nibbles machine exercise demonstrating foundational skills in Nmap scanning and Linux command execution.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Professional Course Production</div>
+                        <div class="project-description">
+                            Edited and sectioned "The Bug Hunter's Methodology" 26-hour course and "RBPAI" class for improved navigation and accessibility. Created logical section breaks and navigation improvements for complex technical educational content using Adobe Premiere Pro.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">community_involvement</h2>
+                <div class="projects-list">
+                    <div class="project-item">
+                        <div class="project-title">Conference Participation</div>
+                        <div class="project-description">
+                            DefCon 2025 attendee with Arcanum team for exposure to cutting-edge security research and professional networking. ISC2 Conference participant for professional development and industry networking. BSides St. Petersburg volunteer coordinator and technical workshop participant.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Professional Development</div>
+                        <div class="project-description">
+                            Active participant in cybersecurity community through regular conference attendance, hands-on workshops, and volunteer work. Building professional relationships within industry to stay current with trends and opportunities while contributing to community knowledge sharing.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cursor blinking effect
+        const cursor = document.querySelector('.cursor');
+        if (cursor) {
+            setInterval(() => {
+                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            }, 500);
+        }
+
+        // Title glitch effect
+        const title = document.querySelector('.title');
+        let canTitleGlitch = true;
+        
+        title.addEventListener('mouseenter', function() {
+            if (canTitleGlitch) {
+                canTitleGlitch = false;
+                
+                let glitchStep = 0;
+                const glitchColors = ['#ff0080', '#0080ff', '#00ff88', '#ff4040'];
+                
+                const glitchInterval = setInterval(() => {
+                    this.style.color = glitchColors[glitchStep % glitchColors.length];
+                    this.style.textShadow = `0 0 20px ${glitchColors[glitchStep % glitchColors.length]}, 2px 0 0 #ff0080, -2px 0 0 #0080ff`;
+                    this.style.transform = `translate(${(Math.random() - 0.5) * 2}px, ${(Math.random() - 0.5) * 2}px)`;
+                    
+                    glitchStep++;
+                    if (glitchStep > 6) {
+                        clearInterval(glitchInterval);
+                        this.style.color = '#00ff88';
+                        this.style.textShadow = '0 0 20px rgba(0, 255, 136, 0.3)';
+                        this.style.transform = 'translate(0, 0)';
+                    }
+                }, 50);
+                
+                setTimeout(() => {
+                    canTitleGlitch = true;
+                }, 5000);
+            }
+        });
+
+        // Back navigation glitch effect
+        const navBack = document.querySelector('.nav-back');
+        let canNavGlitch = true;
+        
+        navBack.addEventListener('mouseenter', function() {
+            if (canNavGlitch) {
+                canNavGlitch = false;
+                
+                let glitchStep = 0;
+                const navGlitchColors = ['#ff0080', '#00ff88', '#0080ff'];
+                
+                const navGlitchInterval = setInterval(() => {
+                    this.style.color = navGlitchColors[glitchStep % navGlitchColors.length];
+                    this.style.textShadow = `0 0 10px ${navGlitchColors[glitchStep % navGlitchColors.length]}`;
+                    
+                    glitchStep++;
+                    if (glitchStep > 3) {
+                        clearInterval(navGlitchInterval);
+                        this.style.color = '#00ff88';
+                        this.style.textShadow = '0 0 10px rgba(0, 255, 136, 0.3)';
+                    }
+                }, 60);
+                
+                setTimeout(() => {
+                    canNavGlitch = true;
+                }, 3000);
+            }
+        });
+
+        // Section title glitch effects
+        const sectionTitles = document.querySelectorAll('.section-title');
+        let sectionCooldowns = new Map();
+        
+        sectionTitles.forEach(title => {
+            title.addEventListener('mouseenter', function() {
+                const sectionText = this.textContent;
+                
+                if (!sectionCooldowns.has(sectionText) || Date.now() - sectionCooldowns.get(sectionText) > 2000) {
+                    sectionCooldowns.set(sectionText, Date.now());
+                    
+                    let glitchStep = 0;
+                    const glitchColors = ['#ff0080', '#0080ff', '#00ff88'];
+                    
+                    const glitchInterval = setInterval(() => {
+                        this.style.color = glitchColors[glitchStep % glitchColors.length];
+                        this.style.textShadow = `0 0 10px ${glitchColors[glitchStep % glitchColors.length]}`;
+                        this.style.transform = `translate(${(Math.random() - 0.5) * 1}px, ${(Math.random() - 0.5) * 1}px)`;
+                        
+                        glitchStep++;
+                        if (glitchStep > 4) {
+                            clearInterval(glitchInterval);
+                            this.style.color = '#00ff88';
+                            this.style.textShadow = 'none';
+                            this.style.transform = 'translate(0, 0)';
+                        }
+                    }, 80);
+                }
+            });
+        });
+
+        // Download button glitch effects
+        const downloadBtns = document.querySelectorAll('.download-btn');
+        let downloadCooldowns = new Map();
+        
+        downloadBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                const btnText = this.textContent;
+                
+                if (!downloadCooldowns.has(btnText) || Date.now() - downloadCooldowns.get(btnText) > 2000) {
+                    downloadCooldowns.set(btnText, Date.now());
+                    
+                    let glitchStep = 0;
+                    const glitchColors = ['#ff0080', '#0080ff', '#00ff88'];
+                    
+                    const glitchInterval = setInterval(() => {
+                        this.style.color = glitchColors[glitchStep % glitchColors.length];
+                        this.style.borderColor = glitchColors[glitchStep % glitchColors.length];
+                        this.style.textShadow = `0 0 8px ${glitchColors[glitchStep % glitchColors.length]}`;
+                        this.style.transform = `translate(${(Math.random() - 0.5) * 1}px, ${(Math.random() - 0.5) * 1}px)`;
+                        
+                        glitchStep++;
+                        if (glitchStep > 3) {
+                            clearInterval(glitchInterval);
+                            this.style.color = '#00ff88';
+                            this.style.borderColor = '#00ff88';
+                            this.style.textShadow = 'none';
+                            this.style.transform = 'translate(0, 0)';
+                        }
+                    }, 80);
+                }
+            });
+            
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Download triggered for:', this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>
